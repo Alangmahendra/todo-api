@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express()
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv')
+const jwt = require('jsonwebtoken')
 
+require('dotenv').config()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -10,7 +13,8 @@ mongoose.connect('mongodb://localhost/todoDB',{useMongoClient:true});
 
 const Todo = require('./router/todo');
 const User = require('./router/user');
-
+const Sign = require('./router/sign');
+app.use('/api/',Sign)
 app.use('/api/todos',Todo)
 app.use('/api/users',User)
 
