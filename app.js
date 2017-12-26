@@ -2,12 +2,15 @@ const express = require('express');
 const app = express()
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv')
+var cors = require('cors')
 const jwt = require('jsonwebtoken')
+
 
 require('dotenv').config()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(cors())
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/todoDB',{useMongoClient:true});
 
