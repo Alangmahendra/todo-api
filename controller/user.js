@@ -9,7 +9,8 @@ class User {
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
          let obj = {
-           username : req.body.username,
+           name  : req.body.name,
+           email : req.body.email,
            password : hash,
            role     : req.body.role || 'user'
          } 
@@ -25,22 +26,23 @@ class User {
   }
 
   static signIn(req,res){
-    let username = req.body.username
-    Model.findOne({username:username},(err,user)=>{
+    console.log('ini sign in')
+    let email = req.body.email
+    Model.findOne({email:email},(err,email)=>{
       if(err){
-        res.json({message:`username tak ada`,err:err})
+        res.json({message:`email tak ada`,err:err})
       }else{
-        console.log(user)
-        console.log('============',user.password)
-        bcrypt.compare(req.body.password, user.password, function(err,data){
+        console.log(email)
+        console.log('============',email.password)
+        bcrypt.compare(req.body.password, email.password, function(err,data){
           if(!err){
-            console.log('-------------',user)
+            console.log('-------------',email)
             jwt.sign({
-              _id       : user._id,
-              username : user.username,
-              password : user.password,
-              role     : user.role,
-              todoList : user.todoList
+              _id      : email._id,
+              name     : email.name,
+              email    : email.email,
+              role     : email.role,
+              todoList : email.todoList
             },process.env.SECRET_KEY,function(err,token){
               if(err){
                 res.json({message:err})
@@ -70,7 +72,7 @@ class User {
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
          let obj = {
-           username : req.body.username,
+           email : req.body.email,
            password : hash,
            role     : req.body.role || 'user'
          } 

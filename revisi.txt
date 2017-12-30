@@ -1,0 +1,5 @@
+ganti username ke email disemua aspek yang dibutuhkan 
+seperti : 
+di foleder ---->model,controller,route (ini disisi server)
+lalu di sisi client juga(makn tuh revisi anjing makanya klo di ingetin 
+login pake email dari awal didengering !!!!!)

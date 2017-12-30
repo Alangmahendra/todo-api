@@ -4,7 +4,8 @@ const Schema = mongoose.Schema,
  ObjectId = Schema.ObjectId;
 
 let userSchema = new Schema({
-    username     : String,
+    name         : String,
+    email        : String,
     password     : String,
     role         : String,
     todoList     : [{type:Schema.Types.ObjectId,ref:'TaskModel'}]
